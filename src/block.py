@@ -10,7 +10,7 @@ class BlockType(Enum):
     OLIST = 'ordered_list'
 
 def block_to_block_type(block):
-    if block.startswith('# '):
+    if block.startswith('#'):
         return BlockType.HEADING 
     if block.startswith('```') and block.endswith('```'):
         return BlockType.CODE
@@ -18,6 +18,8 @@ def block_to_block_type(block):
         return BlockType.QUOTE
     if block.startswith('- '):
         return BlockType.ULIST
-    if block[0:2].isdigit() and block[2:4] == '. ':
+    lines = block.split("\n")
+    if all(line.lstrip().startswith("1.") or line.lstrip()[0].isdigit() and line.lstrip()[1:3] == ". "
+       for line in lines):
         return BlockType.OLIST
     return BlockType.PARAGRAPH
