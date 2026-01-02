@@ -5,7 +5,7 @@ import unittest
 class TestHTMLNode(unittest.TestCase):
 
     def test_leaf_to_html_with_tag_and_props(self):
-        node = LeafNode("p", "Hello, World!", {"class": "intro"})
+        node = LeafNode("p", " Hello, World! ", {"class": "intro"})
         self.assertEqual(node.to_html(), '<p class="intro"> Hello, World! </p>')
 
     def test_leaf_to_html_no_tag(self):
